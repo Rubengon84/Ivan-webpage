@@ -1,0 +1,52 @@
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 60rem;
+  background-color: black;
+}
+
+
+#blind {
+  border: 1px solid blue;
+  background-color: white;
+  width: 80%;
+  height:50rem;
+  display: flex; 
+  justify-content: center;
+  align-items: center; 
+}
+
+#shape1 {
+  position: relative;
+  top:19.5%;
+  right: 37%;
+  transform: rotate(12deg);
+  width: 70%;
+  height: 50%;
+  background-color: cadetblue;
+  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+}
+
+#shape2 {
+  position: relative;
+  top:19.5%;
+  right: 37%;
+  transform: rotate(12deg);
+  width: 70%;
+  height: 50%;
+  background-color:darkkhaki;
+  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+}
+
+#octagon {
+  position:absolute;
+  background-color: red;
+  width: 5%;
+  height: 5%;
+  
+  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+  transform: rotate(-25deg);
+}
