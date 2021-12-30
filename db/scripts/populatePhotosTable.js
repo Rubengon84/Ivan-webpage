@@ -8,7 +8,24 @@ const photosInformation = [{
 {
   location: 'mallorca2',
   path: './images/2.jpg'
-}]
+},
+{
+  location: 'mallorca3',
+  path: './images/3.jpg'
+},
+{
+  location: 'mallorca4',
+  path: './images/4.jpg'
+},
+{
+  location: 'mallorca5',
+  path: './images/5.jpg'
+},
+{
+  location: 'mallorca6',
+  path: './images/6.jpg'
+},]
+
 
 
 

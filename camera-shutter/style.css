@@ -11,42 +11,33 @@ body {
 
 #blind {
   border: 1px solid blue;
-  background-color: white;
-  width: 80%;
-  height:50rem;
+  background-image: url("./octagono-0.png");
+  background-position: center;
+  background-size: 15%;
+  background-repeat: no-repeat;
+  width: 40rem;
+  height:40rem;
   display: flex; 
   justify-content: center;
   align-items: center; 
 }
 
-#shape1 {
-  position: relative;
-  top:19.5%;
-  right: 37%;
-  transform: rotate(12deg);
+.trianguleShape {
+  position: absolute;
   width: 70%;
-  height: 50%;
+  height: 70%;
+  clip-path: polygon(0% 0%, 0% 100%, 100% 0%);
   background-color: cadetblue;
-  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
+  border: 1px solid red;
+}
+
+#shape1 {
+  top:10%;
+  right: -15%;
+
 }
 
 #shape2 {
-  position: relative;
-  top:19.5%;
-  right: 37%;
-  transform: rotate(12deg);
-  width: 70%;
-  height: 50%;
-  background-color:darkkhaki;
-  clip-path: polygon(100% 0, 0% 100%, 100% 100%);
-}
-
-#octagon {
-  position:absolute;
-  background-color: red;
-  width: 5%;
-  height: 5%;
-  
-  clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
-  transform: rotate(-25deg);
+  top:10%;
+  right: -15%;
 }

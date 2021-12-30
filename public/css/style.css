@@ -1,8 +1,65 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+
+.flex-horizontal {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-a {
-  color: #00B7FF;
+.flex-vertical {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+
+html {
+  font-size: 16px;
+}
+
+body {
+  width: 100%;
+}
+
+header {
+  width: 100%;
+  height: 10rem;
+  background-color: cadetblue;
+}
+
+#photoGallery {
+  height: auto;
+  row-gap: 3rem;
+  column-gap: 2rem;
+  padding: 1rem;
+}
+
+
+.photoContainer {
+  border: 1px solid red;
+  width: 15rem;
+  min-width: 300px;
+  height: 15rem;
+  transition: background-size 1s, transform 1s;
+  
+}
+
+.imageContainer {
+ background-position: center bottom;
+ background-repeat: no-repeat;
+ background-size: contain;
+ border: 1px solid blue;
+ width: 100%;
+ height: 82%; 
+}
+
+.imageContainer img {
+  width: auto;
+  height: auto;
 }
