@@ -18,48 +18,91 @@ function printData(image) {
   
   const divPhotoContainer = document.createElement("div");
   divPhotoContainer.setAttribute("class", "photoContainer flex-vertical");
-
+  divPhotoContainer.setAttribute("photoId", `${image.id}`);
+  
   const divImageContainer = document.createElement("div");
   divImageContainer.setAttribute("class", "imageContainer");
   divImageContainer.style.backgroundImage = `url('${image.path}')`;
 
-  const divContainerLocation = document.createElement("div");
-  divContainerLocation.setAttribute("class", "locationContainer");
+  const spanX = document.createElement("span");
+  spanX.setAttribute("class", "Xsquare");
+  spanX.innerText = "X";
+  spanX.addEventListener("click", handleCloseClickPhoto)
+
+  divImageContainer.appendChild(spanX);
+
+  const divContainerText = document.createElement("div");
+  divContainerText.setAttribute("class", "containerText");
   const location = document.createElement("span");
   location.innerText = image.location;
-  divContainerLocation.appendChild(location);
+  location.setAttribute("class", "location");
+  divContainerText.appendChild(location);
+  const comments = document.createElement("div");
+  const spanComents = document.createElement("span");
+  spanComents.innerText = "Comments";
+  comments.setAttribute("class", "comments");
+  comments.appendChild(spanComents);
+  divContainerText.appendChild(comments);
+  //createCommentsStructure(divContainerText);
   
  
   divPhotoContainer.appendChild(divImageContainer);
-  divPhotoContainer.appendChild(divContainerLocation);
+  divPhotoContainer.appendChild(divContainerText);
  
-  divPhotoContainer.addEventListener("click", handleClickPhoto);
+  divPhotoContainer.addEventListener("click", handleOpenClickPhoto);
   document.querySelector("#photoGallery").appendChild(divPhotoContainer);
 
 }
 
 
-function handleClickPhoto(event) {
+function handleOpenClickPhoto(event) {
   let photo;
+  let square;
+  let comments;
+  let textContainer;
+
   if(event.target.getAttribute("class") === "imageContainer") {
-    photo = event.path[1];
+    photo = event.target.parentElement
+    square = event.target.firstChild;
+    comments = event.target.parentElement.lastChild.lastChild;
+    
   }else {
     photo = event.target;
+    square = event.target.firstChild.firstChild;
+    comments = event.target.lastChild.lastChild;
   }
+  square.style.display = "inline-block";
+  comments.style.display = "inline-block";
+  openPhotoMoving(photo);
+
+  const photos = document.querySelectorAll(".photoContainer");
+  photos.forEach(photo => {
+    photo.removeEventListener("click", handleOpenClickPhoto)
+    photo.style.zIndex ="0";
+  });
   photo.style.zIndex = "1";
-  photoMoving(photo);
+ 
 }
 
-function photoMoving(photo) {
+function handleCloseClickPhoto(event) {
+  const photo = event.target.parentElement.parentElement;
+  closePhotoMoving(photo);
+  event.target.style.display = "none";
+  const photos = document.querySelectorAll(".photoContainer");
+  photos.forEach(photo => photo.addEventListener("click", handleOpenClickPhoto));
+  const comments = document.querySelectorAll(".comments");
+  comments.forEach(comment => comment.style.display = "none");
+}
 
+function openPhotoMoving(photo) {
   const {Ypx: yPhotoTranslate , Xpx:xPhotoTranslate, photoPorcent: photoWPorcent} = pxToMove(0.6, photo);
-
   photo.style.transform = `translate(${xPhotoTranslate}px, ${yPhotoTranslate}px) scale(${photoWPorcent})`;
-  //photo.childNodes[0].style.display = "flex";
-  photo.style.zIndex = "1";
-  //photo.setAttribute("onclick", "");
-  console.log(photo);
 
+}
+
+function closePhotoMoving(photo) {
+  photo.style.transform = "translate(0,0) scale(1)"
+  photo.zIndex = "0";
 }
 
 
@@ -109,3 +152,33 @@ function pxToMove(porcent, element) {
     }
   }
 }
+
+function createCommentsStructure(comment){
+
+  const form = document.createElement("form");
+  const label = document.createElement("label");
+  label.innerText = "Introduce tu comentario";
+  const inputText = document.createElement("input");
+  inputText.setAttribute("type","text");
+  inputText.setAttribute("id", "comentInput");
+
+  const inputButton = document.createElement("input");
+  inputButton.setAttribute("type", "submit");
+  form.appendChild(label);
+  form.appendChild(inputText);
+  form.appendChild(inputButton);
+
+  comment.appendChild(form);
+
+}
+
+$(document).ready( () => {
+  
+  const comments = $(".comments");
+
+  comments.click(function(){
+     $ (this.nextElementSibling).slideToggle("slow")
+      })
+    
+
+});
