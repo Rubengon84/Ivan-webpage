@@ -6,14 +6,41 @@
     <title>Your Generated Front-end</title>
     <link rel="stylesheet" href="./css/reset.css" type="text/css" />
     <link rel="stylesheet" href="./css/style.css" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nerko+One&family=Permanent+Marker&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <script src="./Js/main.js" defer></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   </head>
   <body>
-    <header>
-      <h1>Gallery</h1>
-
+    <header class="flex-horizontal">
+      <div id="backToIntroduction">
+        <span>Back to Intro</span>
+        <img src="./css/pruebas/Go-Back.png" >
+      </div>
+      <h1 id="title" class="flex-horizontal">My Gallery</h1>
+      <div id="menu"></div>
     </header>
+    <aside>
+      <section id="introduction" class="flex-vertical">
+     
+          <h1 id="introductionTitle">IVAN ANTELO</h1>
+          <div id="camara" class="flex-horizontal"></div>
+          <div id="circule"></div>
+          <div id="light"></div>
+          <div id="galleryButton"><span>Enter into Gallery</span></div>
+          <p>Hola me llamo Ivan Antelo, soy un chico de espana que hace poco descubrio su pasion por la fotografia, en esta website os quiero mostrar el mundo a traves de mi camara, espero que lo disfruteis!!</p>
+      
+      </section>
+      <section class="blur"></section>
+      <section id="nextBackButtons" class="flex-horizontal close" action="close">
+        <div id="buttonLeft" class="buttons" name="back">
+          <span>Back</span>
+        </div>
+        <div id="buttonRight" class="buttons" name="next">
+          <spam>Next</spam>
+        </div>
+      </section>
+    </aside>
     <main class="flex-horizontal">
       <section class="flex-wrap" id ="photoGallery">
 

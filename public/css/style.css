@@ -1,3 +1,19 @@
+/* Fonts-Family
+font-family: 'Nerko One', cursive;
+font-family: 'Permanent Marker', cursive;
+font-family: 'Roboto', sans-serif;
+
+*/
+
+:root {
+  --darkest: #0B0B0D;
+  --dark: #181D26;
+  --mediun: #4C5459;
+  --light: #8C8A7D;
+  --ligthMediun: #8C5637;
+}
+
+
 
 .flex-horizontal {
   display: flex;
@@ -18,6 +34,11 @@
   justify-content: space-around;
 }
 
+.stop-scrolling {
+  height: 100%;
+  overflow: hidden;
+}
+
 
 html {
   font-size: 16px;
@@ -25,12 +46,53 @@ html {
 
 body {
   width: 100%;
+  min-width: 360px;
 }
 
 header {
   width: 100%;
   height: 10rem;
-  background-color: cadetblue;
+  background-color: var(--darkest);
+}
+
+#backToIntroduction {
+  border-radius: 0.5rem;
+  box-shadow: 0.2rem 0.2rem 0.3rem whitesmoke;
+  text-align: center;
+  color: white;
+  background-color: var(--ligthMediun);
+  border: 2px solid var(--ligthMediun);
+  width: 5%;
+  height: 60%;
+}
+
+#backToIntroduction img {
+  width: 100%;
+  height: 60%;
+}
+
+#title {
+  width: 40%;
+  height: 100%;
+  color: black;
+  font-family: 'Permanent Marker', cursive;
+  -webkit-text-stroke: 0.1rem white;
+  text-shadow:0.4rem 0.4rem 0.4rem whitesmoke;
+}
+
+#menu {
+  border: 1px solid red;
+  width: 30%;
+  height: 100%;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+p {
+  color: white;
+  font-size: 1rem;
 }
 
 #photoGallery {
@@ -46,8 +108,7 @@ header {
   width: 15rem;
   min-width: 300px;
   height: 15rem;
-  transition: background-size 1s, transform 1s;
-  
+  transition: z-index 1s ,background-size 1s, transform 1s;
 }
 
 .imageContainer {
@@ -81,3 +142,153 @@ header {
   padding: 5px;
   display: none;
 }
+
+@keyframes shutterEffect {
+  0% {top: 2.5%; left: 2%; width:90%; height: 90%;}
+  72.72% {top:-130%; left: -100%; width:320%; height: 320%;}
+  100% {top:-130%; left: -100%; width:320%; height: 320%;}
+}
+
+
+#introduction {
+ display: flex;
+ justify-content: space-around;
+ border-radius: 2rem;
+ position: fixed;
+ top: 2.5%;
+ left: 2%;
+ background-color: black;
+ z-index: 3;
+ width: 90%;
+ height: 90%;
+ animation-name: "";
+ animation-duration: 5.5s;
+ animation-fill-mode:forwards ;
+ padding: 1rem 0.7rem 1rem 1rem;
+}
+
+#introductionTitle {
+  height: 15%;
+  color: black;
+  font-family: 'Permanent Marker', cursive;
+  -webkit-text-stroke: 0.1rem white;
+  text-shadow:0.4rem 0.4rem 0.4rem whitesmoke;
+}
+ 
+
+
+#camara {
+  width: 60%;
+  height: 65%;
+  background-image: url("./pruebas/Ivan-Prueba5.png");
+  background-position: 13% 43%;
+  background-repeat: no-repeat;
+  background-size: 90% 90%;
+  z-index: 6;
+}
+
+@keyframes shutter {
+  0% { top: 30%; background-size: 50% 45%; }
+  63.63% { top: 33%; background-size: 50% 45%;}
+  72.72% { top: 33%; background-size: 50% 45%; }
+  80% { top: 33%;background-size: 200% 200%;}
+  100% { top: 33%;background-size: 200% 200%;}
+}
+
+#circule {
+  position:absolute;
+  top:30%;
+  border-radius: 50%;
+  background-image: url("./pruebas/shutter.png");
+  background-position: 50% 50%;
+  background-repeat: no-repeat;
+  background-size: 50% 45%;
+  animation-name:"";
+  animation-duration: 5.5s;
+  animation-fill-mode:forwards ;
+  width: 40%;
+  height: 40%;
+  z-index: 5;
+}
+
+@keyframes light {
+  0% { top: 49.5%; width:1%; height: 1%; }
+  63.63% {top: 52.5%; width:1%; height: 1%; }
+  75% {top:52.5%; width:1%; height: 1%; }
+  100% { top: 0%; width:200%; height: 200%;}
+}
+
+#light {
+  position:absolute;
+  top: 49.5%;
+  border-radius: 50%;
+  box-shadow: 0 0 0 0.5% white;
+  width: 1%;
+  height: 1%;
+  background: radial-gradient(#ffffff, #ffffff8e);
+  z-index: 8;
+  animation-name: "";
+  animation-duration: 5.5s;
+  animation-fill-mode:forwards ;
+}
+
+#galleryButton {
+  border-radius: 0.5rem;
+  background-color: darkgray;
+  color: white;
+  padding: 0.5rem;
+  font-size: 1rem;
+}
+
+p {
+  padding: 0.5rem;
+  text-align: center;
+  height: 15%;
+  width: 80%;
+}
+
+.blur {
+ border-radius: 1rem;
+ display: none; 
+ position: fixed;
+ top: 5%;
+ left: 5%;
+ background-color: rgba(210, 105, 30, 0);
+ z-index: 1;
+ width: 90%;
+ height: 90%;
+ transition: background-color 2s;
+}
+
+.blur-open {
+  display: block;
+  background-color: rgba(210, 105, 30, 0.3);
+  transition: background-color 2s;
+}
+
+
+#nextBackButtons {
+  position:fixed;
+  justify-content: space-between;
+  top: 40%;
+  transition: width 1s, left 1s;
+  z-index: 2;
+}
+
+.close{
+  width: 120%;
+  left: -10%;
+}
+
+.open {
+  width: 90%;
+  left: 5%;
+}
+
+.buttons {
+  width: 5rem;
+  height: 3rem;
+  background-color: brown;
+}
+
+/*@media screen and (min-width: 900px) {*/

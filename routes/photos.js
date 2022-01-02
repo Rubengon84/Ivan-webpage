@@ -13,6 +13,14 @@ router.get("/", async function (req, res) {
   });
 });
 
+router.get("/comments", async function (req, res) {
+  let comments = await models.getAllComments();
+  res.json({ 
+    succes: true,
+    message: "here all the photos",
+    payload:  comments            
+  });
+});
 
 router.get("/:photoId", async function (req, res) {
   let id = Number(req.params.photoId);

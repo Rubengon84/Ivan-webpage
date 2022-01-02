@@ -12,6 +12,14 @@ export async function getPhotoByID(id) {
   return photo.rows;
 }
 
+export async function getAllComments() {
+  const comment = await query(`
+  SELECT * FROM photos
+  INNER JOIN comments
+  ON photos.id = comments.id_Photo`);
+  return comment.rows;
+}
+
 export async function getCommentsById(id) {
   const comment = await query(`
   SELECT user_name, user_comments FROM comments
