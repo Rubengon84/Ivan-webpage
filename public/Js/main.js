@@ -11,7 +11,6 @@ response.payload.forEach(element => printData(element));
 
 }
 
-//getData();
 
 const buttons = document.querySelectorAll(".buttons");
 buttons.forEach(element => element.addEventListener("click", handleNextBackPhoto));
@@ -25,6 +24,10 @@ function printData(image) {
   const divImageContainer = document.createElement("div");
   divImageContainer.setAttribute("class", "imageContainer");
   divImageContainer.style.backgroundImage = `url('${image.path}')`;
+  const img = document.createElement("img");
+  img.setAttribute("src", `${image.path}`);
+  img.setAttribute("class", "image");
+  divImageContainer.appendChild(img);
 
   const spanX = document.createElement("span");
   spanX.setAttribute("class", "Xsquare");
@@ -35,6 +38,10 @@ function printData(image) {
 
   const divContainerText = document.createElement("div");
   divContainerText.setAttribute("class", "containerText");
+  const title = document.createElement("h2");
+  title.innerText = image.title;
+  title.setAttribute("class", "imageTitle");
+  divContainerText.appendChild(title);
   const location = document.createElement("span");
   location.innerText = image.location;
   location.setAttribute("class", "location");
@@ -58,22 +65,19 @@ function printData(image) {
 
 
 function handleOpenClickPhoto(event) {
-
-const photos = document.querySelectorAll(".photoContainer");
-
 event.preventDefault();
 
-  photos.forEach(photo => photo.style.zIndex ="0");
-
+const photos = document.querySelectorAll(".photoContainer");
+photos.forEach(photo => photo.style.zIndex ="0");
+console.log(event);
 let photo;
 
 
   if(event.target.getAttribute("class") === "imageContainer") {
     photo = event.target.parentElement;
 
-  }else {
-    photo = event.target;
-
+  }else if (event.target.getAttribute("class") === "image") {
+    photo = event.target.parentElement.parentElement;
   }
  // idPhoto = photo.getAttribute("photoId")
 
@@ -111,18 +115,26 @@ function handleNextBackPhoto(event) {
 function openPhotoMoving(photo) {
 
   buttons.forEach( button => button.style.visibility = "visible");
-  const {Ypx: yPhotoTranslate , Xpx:xPhotoTranslate, photoPorcent: photoWPorcent} = pxToMove(0.6, photo);
+
+  let deviceWidth = window.innerWidth;
+  console.log(deviceWidth)
+  let porcentIncrement = deviceWidth < 665 ? 1 : deviceWidth < 900 ? 0.8 : 0.6;
+  console.log(porcentIncrement);
+  const {Ypx: yPhotoTranslate , Xpx:xPhotoTranslate, photoPorcent: photoWPorcent} = pxToMove(`${porcentIncrement}`, photo);
   photo.style.transform = `translate(${xPhotoTranslate}px, ${yPhotoTranslate}px) scale(${photoWPorcent})`;
-  square = photo.firstChild.firstChild;
-  comments = photo.lastChild.lastChild;
+  square = photo.firstChild.lastChild;
+  //comments = photo.lastChild.lastChild;
   photo.style.zIndex = "2";
-  square.style.display = "flex";
-  comments.style.display = "inline-block";
+  square.style.display = "block";
+  if (photo.firstChild.firstChild.offsetWidth < 250) {
+    square.style.left = "82%";
+  }
+  //comments.style.display = "inline-block";
   idPhoto = photo.getAttribute("photoId")
   console.log(idPhoto);
   if (idPhoto === "1") {
     document.querySelector("#buttonLeft").style.visibility = "hidden";
-  } else if(idPhoto === "6") {
+  } else if(idPhoto === "33") {
     document.querySelector("#buttonRight").style.visibility = "hidden";
   }
 }
@@ -131,9 +143,9 @@ function closePhotoMoving(photo) {
   photo.style.transform = "translate(0,0) scale(1)"
   photo.style.zIndex = "0";
   idPhoto = "";
-  comments = photo.lastChild.lastChild;
-  square = photo.firstChild.firstChild;
-  comments.style.display = "none";
+  //comments = photo.lastChild.lastChild;
+  square = photo.firstChild.lastChild;
+  //comments.style.display = "none";
   square.style.display = "none";
   
 }
@@ -238,6 +250,13 @@ function handleAnimationClick(event) {
   activateAnimation();
 }
 
+function handleReturnIntroClick(event) {
+  event.preventDefault();
+  document.querySelector("#introduction").style.display = "flex";
+  document.querySelector("#photoGallery").innerHTML = "";
+
+}
+
 
 function activateAnimation() {
   document.querySelector("#introduction").style.animationName = "shutterEffect";
@@ -252,7 +271,15 @@ function activateAnimation() {
   setTimeout(() => {
     getData();
     document.querySelector("#introduction").style.display = "none";
+    resetAnimation();
   }, 5000);
 }
 
+function resetAnimation() {
+  document.querySelector("#introduction").style.animationName = "";
+  document.querySelector("#circule").style.animationName = "";
+  document.querySelector("#light").style.animationName = "";
+}
+
 document.querySelector("#galleryButton").addEventListener("click", handleAnimationClick);
+document.querySelector("#backToIntroduction").addEventListener("click", handleReturnIntroClick);

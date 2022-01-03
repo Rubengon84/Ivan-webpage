@@ -6,11 +6,11 @@ font-family: 'Roboto', sans-serif;
 */
 
 :root {
-  --darkest: #0B0B0D;
-  --dark: #181D26;
-  --mediun: #4C5459;
-  --light: #8C8A7D;
-  --ligthMediun: #8C5637;
+  --darkest: rgb(11, 11, 13);
+  --dark: rgb(24, 29, 38);
+  --mediun: rgb(76, 84, 89);
+  --light: rgb(140, 138, 125);
+  --ligthMediun: rgb(140, 86, 55);
 }
 
 
@@ -42,37 +42,42 @@ font-family: 'Roboto', sans-serif;
 
 html {
   font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  text-align: center;
 }
 
 body {
   width: 100%;
-  min-width: 360px;
+  background-color: var(--darkest);
 }
 
 header {
+  min-width: 360px;
   width: 100%;
   height: 10rem;
+  justify-content: center;
   background-color: var(--darkest);
 }
 
 #backToIntroduction {
+  font-size: 0.8rem;
   border-radius: 0.5rem;
   box-shadow: 0.2rem 0.2rem 0.3rem whitesmoke;
   text-align: center;
   color: white;
   background-color: var(--ligthMediun);
   border: 2px solid var(--ligthMediun);
-  width: 5%;
+  width: 10%;
   height: 60%;
 }
 
 #backToIntroduction img {
   width: 100%;
-  height: 60%;
+  height: 50%;
 }
 
 #title {
-  width: 40%;
+  width: 60%;
   height: 100%;
   color: black;
   font-family: 'Permanent Marker', cursive;
@@ -81,6 +86,7 @@ header {
 }
 
 #menu {
+  display: none;
   border: 1px solid red;
   width: 30%;
   height: 100%;
@@ -88,6 +94,10 @@ header {
 
 h1 {
   font-size: 3rem;
+}
+
+h2 {
+  font-size: 1.5rem;
 }
 
 p {
@@ -104,7 +114,6 @@ p {
 
 
 .photoContainer {
-  border: 1px solid red;
   width: 15rem;
   min-width: 300px;
   height: 15rem;
@@ -112,29 +121,61 @@ p {
 }
 
 .imageContainer {
- display: flex;
- justify-content: flex-end; 
+ 
+ justify-content:right; 
  align-items: flex-start;
  background-position: center bottom;
  background-repeat: no-repeat;
  background-size: contain;
- border: 1px solid blue;
- width: 100%;
+ box-shadow: 0.1rem 0.1rem 0.5rem 0.2rem var(--light);
+ width:auto;
  height: 83%; 
+ overflow: hidden;
+}
+
+.imageContainer img {
+  width: auto;
+  height: 100%;
+  visibility: hidden;
+  z-index: 0;
 }
 
 .Xsquare {
   display: none;
+  position:relative;
+  text-align: center;
+  width: 1rem;
+  height: 1rem;
+  top: -100%;
+  left: 90%;
   background-color: white;
   padding: 0.3rem;
   color:black
 }
+
+.containerText {
+  width: fit-content;
+  color: white;
+}
+
+.imageTitle {
+ margin-top: 0.2rem;
+ display: inline-block;
+ padding: 0.2rem;
+}
+
+.location {
+  display: none;
+  float: right;
+}
+
 
 .comments {
   display: none;
   width: 100%;
   text-align: center;
 }
+
 
 .containerText form {
   width: 100%;
@@ -152,18 +193,18 @@ p {
 
 #introduction {
  display: flex;
+ position: fixed;
  justify-content: space-around;
  border-radius: 2rem;
- position: fixed;
- top: 2.5%;
- left: 2%;
+ top: 3%;
+ left: 4%;
  background-color: black;
  z-index: 3;
  width: 90%;
  height: 90%;
  animation-name: "";
  animation-duration: 5.5s;
- animation-fill-mode:forwards ;
+ /*animation-fill-mode:forwards ;*/
  padding: 1rem 0.7rem 1rem 1rem;
 }
 
@@ -205,7 +246,7 @@ p {
   background-size: 50% 45%;
   animation-name:"";
   animation-duration: 5.5s;
-  animation-fill-mode:forwards ;
+  /*animation-fill-mode:forwards ;*/
   width: 40%;
   height: 40%;
   z-index: 5;
@@ -229,7 +270,7 @@ p {
   z-index: 8;
   animation-name: "";
   animation-duration: 5.5s;
-  animation-fill-mode:forwards ;
+  /*animation-fill-mode:forwards ;*/
 }
 
 #galleryButton {
@@ -251,18 +292,17 @@ p {
  border-radius: 1rem;
  display: none; 
  position: fixed;
- top: 5%;
- left: 5%;
- background-color: rgba(210, 105, 30, 0);
+ top: 0;
+ left: 0;
  z-index: 1;
- width: 90%;
- height: 90%;
+ width: 100%;
+ height: 100%;
  transition: background-color 2s;
 }
 
 .blur-open {
   display: block;
-  background-color: rgba(210, 105, 30, 0.3);
+  background-color: rgba(24, 29, 38, 0.705);
   transition: background-color 2s;
 }
 
@@ -270,19 +310,19 @@ p {
 #nextBackButtons {
   position:fixed;
   justify-content: space-between;
-  top: 40%;
+  top: 90%;
   transition: width 1s, left 1s;
-  z-index: 2;
+  z-index: 4;
 }
 
 .close{
-  width: 120%;
-  left: -10%;
+  width: 160%;
+  left: -30%;
 }
 
 .open {
-  width: 90%;
-  left: 5%;
+  width: 80%;
+  left: 10%;
 }
 
 .buttons {
@@ -291,4 +331,28 @@ p {
   background-color: brown;
 }
 
-/*@media screen and (min-width: 900px) {*/
+footer {
+  width: 100%;
+  height: 5rem;
+  background-color: var(--dark);
+  justify-content: flex-start;
+  align-items: flex-end;
+}
+
+#letterR {
+
+  font-size: 1.8rem;
+  vertical-align:sub;
+}
+/*
+@media screen and (min-width: 650px) {
+
+  h1 { 
+    font-size: 3.2rem;
+  }
+  
+  #backToIntroduction {
+    font-size: 1rem;
+  }
+}
+*/
