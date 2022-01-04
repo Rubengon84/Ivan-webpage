@@ -172,13 +172,16 @@ function closePhotoMoving(photo) {
   
 }
 
-
+// function for checking in with position is the photo passed
 function elementPosition(element) {
+  // get the witdth of the screen
   const screenWidth = window.innerWidth;
   const halfScreen = screenWidth / 2;
+  // get the distance from the left side of the screen to the lef side of the element passed
   const {left: elementLeft} = element.getBoundingClientRect();
+  // get the width of the element passed
   const elementWidth = element.offsetWidth;
-  
+  // define in which side the element is depends of the distance to the midle of the screen
   if(((elementWidth / 2) + elementLeft) > (halfScreen - 2) && ((elementWidth / 2) + elementLeft) < (halfScreen + 2 )) {
     return "center";
   } else if ((halfScreen - elementLeft) > 0) {
@@ -187,18 +190,23 @@ function elementPosition(element) {
     return "right";
   }
 }
-
+// function to define how many pixel and porcentage the photo has to move and change depends of the porcentage passed and the position of the photo
 function pxToMove(porcent, element) {
+  // get the width of the element passed
   const elementWidth = element.offsetWidth;
+  // get the height of the element passed
   const elementHeight = element.offsetHeight;
   const halfElementWidth = elementWidth / 2;
   const halfElementHeight = elementHeight / 2;
+  // get the width of the screen
   const screenWidth = window.innerWidth;
+  // get the height of the screen
   const screenHeight = window.innerHeight;
+  //calculate the porcentage to change depends of the screen size and photo size 
   const elementWPorcent =  (porcent * screenWidth) / elementWidth;
-
+  // get the left and top distance of the element to the side and the eop of the screen
   const {top: actualTopPosition, left: actualLeftPosition} = element.getBoundingClientRect();
-  
+  // know the positio that the element needs to get for been in the center
   const centralElementLeftPosition = (screenWidth / 2) - halfElementWidth;
   const centralElementTopPosition = (screenHeight / 2) - halfElementHeight;
   

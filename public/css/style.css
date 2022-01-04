@@ -81,11 +81,15 @@ header {
 #backToIntroduction:hover {
   cursor: pointer;
   font-size: 1.1rem;
-  border: 1px solid var(--light);
+  background-color: rgb(230, 92, 12);
 }
 
 #backToIntroduction:hover .backImage{
   width: 90%;
+}
+
+#backToIntroduction:active {
+  background-color: var(--ligthMediun);
 }
 
 #title {
@@ -325,6 +329,11 @@ p {
   cursor: pointer;
   color: white;
   transform: scale(1.2);
+  background-color: rgb(230, 92, 12);
+}
+
+#galleryButton:active {
+  background-color: var(--ligthMediun);
 }
 
 p {
@@ -376,10 +385,17 @@ p {
   height: 5rem;
   background-color: var(--ligthMediun);
   color: white;
+  transition: transform 0.3s;
 }
 
 .buttons:hover {
   cursor: pointer;
+  transform: scale(1.2);
+  background-color: rgb(230, 92, 12) ;
+}
+
+.buttons:active {
+  background-color: var(--ligthMediun)
 }
 
 #buttonLeft {
