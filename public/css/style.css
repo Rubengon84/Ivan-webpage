@@ -60,7 +60,7 @@ header {
 }
 
 #backToIntroduction {
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   border-radius: 0.5rem;
   box-shadow: 0.2rem 0.2rem 0.3rem whitesmoke;
   text-align: center;
@@ -69,11 +69,23 @@ header {
   border: 2px solid var(--ligthMediun);
   width: 10%;
   height: 60%;
+  transition: font-size 0.5s;
 }
 
 #backToIntroduction img {
-  width: 100%;
+  width: 80%;
   height: 50%;
+  transition: width 0.5s;
+}
+
+#backToIntroduction:hover {
+  cursor: pointer;
+  font-size: 1.1rem;
+  border: 1px solid var(--light);
+}
+
+#backToIntroduction:hover .backImage{
+  width: 90%;
 }
 
 #title {
@@ -121,17 +133,35 @@ p {
 }
 
 .imageContainer {
- 
+ box-sizing: border-box;
+ -moz-box-sizing: border-box;
+ -webkit-box-sizing: border-box; 
  justify-content:right; 
  align-items: flex-start;
  background-position: center bottom;
  background-repeat: no-repeat;
- background-size: contain;
+ background-size: 100% 100%;
  box-shadow: 0.1rem 0.1rem 0.5rem 0.2rem var(--light);
  width:auto;
  height: 83%; 
  overflow: hidden;
+ transition: border 0.5s;
 }
+
+.imageContainer:hover {
+  cursor: pointer;
+}
+/*
+.noHover {
+  pointer-events: none;
+}
+/*
+.imagehoverContainer:hover {
+  cursor: pointer;
+  background-size: 120% 120%;
+}
+*/
+
 
 .imageContainer img {
   width: auto;
@@ -141,16 +171,24 @@ p {
 }
 
 .Xsquare {
+  border-radius: 0.3rem;
+  border: 1px solid var(--darkest);
   display: none;
   position:relative;
   text-align: center;
-  width: 1rem;
-  height: 1rem;
+  width: 0.9rem;
+  height: 0.9rem;
   top: -100%;
   left: 90%;
   background-color: white;
   padding: 0.3rem;
-  color:black
+  color:black;
+  z-index: 5;
+  transition: transform 0.5s;
+}
+
+.Xsquare:hover {
+  transform: scale(1.1);
 }
 
 .containerText {
@@ -159,6 +197,8 @@ p {
 }
 
 .imageTitle {
+ border-radius: 0.3rem;
+ background-color: rgba(0, 0, 0, 0.596);
  margin-top: 0.2rem;
  display: inline-block;
  padding: 0.2rem;
@@ -185,7 +225,7 @@ p {
 }
 
 @keyframes shutterEffect {
-  0% {top: 2.5%; left: 2%; width:90%; height: 90%;}
+  0% {top: 3%; left: 4%; width:90%; height: 90%;}
   72.72% {top:-130%; left: -100%; width:320%; height: 320%;}
   100% {top:-130%; left: -100%; width:320%; height: 320%;}
 }
@@ -229,7 +269,7 @@ p {
 }
 
 @keyframes shutter {
-  0% { top: 30%; background-size: 50% 45%; }
+  0% { top: 31%; background-size: 50% 45%; }
   63.63% { top: 33%; background-size: 50% 45%;}
   72.72% { top: 33%; background-size: 50% 45%; }
   80% { top: 33%;background-size: 200% 200%;}
@@ -238,7 +278,7 @@ p {
 
 #circule {
   position:absolute;
-  top:30%;
+  top:31%;
   border-radius: 50%;
   background-image: url("./pruebas/shutter.png");
   background-position: 50% 50%;
@@ -253,9 +293,9 @@ p {
 }
 
 @keyframes light {
-  0% { top: 49.5%; width:1%; height: 1%; }
-  63.63% {top: 52.5%; width:1%; height: 1%; }
-  75% {top:52.5%; width:1%; height: 1%; }
+  0% { top: 49.5%; width:0%; height: 0%; }
+  63.63% {top: 52.5%; width:0%; height: 0%; }
+  75% {top:52.5%; width:0%; height: 0%; }
   100% { top: 0%; width:200%; height: 200%;}
 }
 
@@ -264,8 +304,8 @@ p {
   top: 49.5%;
   border-radius: 50%;
   box-shadow: 0 0 0 0.5% white;
-  width: 1%;
-  height: 1%;
+  width: 0%;
+  height: 0%;
   background: radial-gradient(#ffffff, #ffffff8e);
   z-index: 8;
   animation-name: "";
@@ -275,10 +315,16 @@ p {
 
 #galleryButton {
   border-radius: 0.5rem;
-  background-color: darkgray;
-  color: white;
+  background-color: var(--ligthMediun);
+  color: var(--darkest);
   padding: 0.5rem;
   font-size: 1rem;
+}
+
+#galleryButton:hover {
+  cursor: pointer;
+  color: white;
+  transform: scale(1.2);
 }
 
 p {
@@ -310,7 +356,7 @@ p {
 #nextBackButtons {
   position:fixed;
   justify-content: space-between;
-  top: 90%;
+  top: 80%;
   transition: width 1s, left 1s;
   z-index: 4;
 }
@@ -327,9 +373,24 @@ p {
 
 .buttons {
   width: 5rem;
-  height: 3rem;
-  background-color: brown;
+  height: 5rem;
+  background-color: var(--ligthMediun);
+  color: white;
 }
+
+.buttons:hover {
+  cursor: pointer;
+}
+
+#buttonLeft {
+  clip-path: polygon(0 50%, 100% 0, 100% 100%);
+}
+
+
+#buttonRight {
+  clip-path: polygon(100% 50%, 0 0, 0 100%);
+}
+
 
 footer {
   width: 100%;
