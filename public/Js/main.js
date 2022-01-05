@@ -14,6 +14,10 @@ response.payload.forEach(element => printData(element));
 // get the buttons elements to asign the handle click for passing the photos forward and backward
 const buttons = document.querySelectorAll(".buttons");
 buttons.forEach(element => element.addEventListener("click", handleNextBackPhoto));
+// assing eventlistener to the galleryButton to play the animation and enter into gallery
+document.querySelector("#galleryButton").addEventListener("click", handleAnimationClick);
+// assing eventlistener to the backIntroduction button for returning to the intro animation
+document.querySelector("#backToIntroduction").addEventListener("click", handleReturnIntroClick);
 
 // function to construct the html photo element with all the information passed by image object 
 function printData(image) {
@@ -227,20 +231,24 @@ function pxToMove(porcent, element) {
     }
   }
 }
-
+// function to control the navigation buttons for going forward or backward
 function nextBackPhoto(string, idPhoto) {
+ // get all the photos from photoContainer element 
  const photos = document.querySelectorAll(".photoContainer");
+ // get the actual photo passed by id
  const actualPhoto = photos[idPhoto - 1];
+ // close the photo passed by the function
  closePhotoMoving(actualPhoto);
+ // if the arrow is back, get the previous photo, if is next, get the next photo
   if (string === "back") {
     openPhotoMoving(photos[idPhoto - 2]);
   } else {
     openPhotoMoving(photos[idPhoto]);
   }
 }
-
+// function for creating a coment structure with a form to intruduce coments
 function createCommentsStructure(comment){
-
+  // create a form to introduce new coments with its own attributes;
   const form = document.createElement("form");
   const label = document.createElement("label");
   label.innerText = "Introduce tu comentario";
@@ -256,60 +264,64 @@ function createCommentsStructure(comment){
   comment.appendChild(form);
 
 }
-
+// function for closing or opening the navidation buttons
 function moveButtons() {
+  // get the navigation button element 
   const buttons = document.querySelector("#nextBackButtons");
+  // get action attribute from function
   let action = buttons.getAttribute("action");
+  // check if the atribute is close
   if(action === "close") {
-
+    // we move the buttons inside the screen for make them funtionals
     buttons.setAttribute("class", "flex-horizontal open");
     buttons.setAttribute("action", "open");
+    // open a blur blind at the back os the page
     document.querySelector(".blur").setAttribute("class", "blur blur-open");
 
   } else {
-  
+    // if the action is open, we close the buttons and move them agay from the screen  
     buttons.setAttribute("class", "flex-horizontal close");
     buttons.setAttribute("action", "close");
+    // remove the blur blind from the screen
     document.querySelector(".blur").setAttribute("class", "blur");
 
   }
 }
-
+// function to handle the introduction animation after clicked on the button
 function handleAnimationClick(event) {
   event.preventDefault();
   activateAnimation();
 }
-
+// function to handle the returning back button, to go back to the introduction
 function handleReturnIntroClick(event) {
   event.preventDefault();
+  // make visible the introduction
   document.querySelector("#introduction").style.display = "flex";
+  // remove the photos from the gallery
   document.querySelector("#photoGallery").innerHTML = "";
 
 }
 
-
+// function for activating the animation setting the animations names to its owm properties
 function activateAnimation() {
   document.querySelector("#introduction").style.animationName = "shutterEffect";
   document.querySelector("#circule").style.animationName = "shutter";
   document.querySelector("#light").style.animationName = "light";
-  
+  // set a delay for the audio sound in the animation 
   setTimeout(() => {
     const audio = new Audio('../css/camera-long-shutter.wav');
     audio.play();
   }, 3800);
-
+  // remove the whole introduction at the end of the animation, get the data from the database and reset the animation for the next time
   setTimeout(() => {
     getData();
     document.querySelector("#introduction").style.display = "none";
     resetAnimation();
   }, 5000);
 }
-
+// function for reseting the animation in case that user wants to see it again
 function resetAnimation() {
   document.querySelector("#introduction").style.animationName = "";
   document.querySelector("#circule").style.animationName = "";
   document.querySelector("#light").style.animationName = "";
 }
-
-document.querySelector("#galleryButton").addEventListener("click", handleAnimationClick);
-document.querySelector("#backToIntroduction").addEventListener("click", handleReturnIntroClick);
