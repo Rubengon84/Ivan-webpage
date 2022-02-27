@@ -1,6 +1,6 @@
 # Ivan Webpage
 
-## Ivan Phot Showroom.
+## Ivan Photo Showroom.
 
 ### Table of contents
 * [General info](#general-info)
